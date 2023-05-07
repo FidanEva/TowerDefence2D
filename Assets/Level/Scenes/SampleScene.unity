@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle
       objectReference: {fileID: 0}
+    - target: {fileID: 8361613890652488971, guid: d0379cc2c9fa2424793166e99fe3fb42, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9206137476936730244, guid: d0379cc2c9fa2424793166e99fe3fb42, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -1412,6 +1416,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5809889557560285205, guid: 87adcd3798bd0484eb63f6c970bdd929, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809889557560285205, guid: 87adcd3798bd0484eb63f6c970bdd929, type: 3}
       propertyPath: _spawnPoint
       value: 
       objectReference: {fileID: 104875639}
@@ -1460,8 +1468,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5809889557560285207, guid: 87adcd3798bd0484eb63f6c970bdd929, type: 3}
+      propertyPath: _spawnPoint
+      value: 
+      objectReference: {fileID: 104875639}
+    - target: {fileID: 5809889557560285207, guid: 87adcd3798bd0484eb63f6c970bdd929, type: 3}
       propertyPath: enemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5809889557560285207, guid: 87adcd3798bd0484eb63f6c970bdd929, type: 3}
       propertyPath: enemies.Array.data[0]
@@ -1471,5 +1483,6 @@ PrefabInstance:
       propertyPath: enemies.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 96f44e27352787e48922a560fb948b6d, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5809889557560285205, guid: 87adcd3798bd0484eb63f6c970bdd929, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 87adcd3798bd0484eb63f6c970bdd929, type: 3}

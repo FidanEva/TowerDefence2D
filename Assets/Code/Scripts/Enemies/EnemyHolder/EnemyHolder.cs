@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class EnemyHolder : SingletoneBase<EnemyHolder>
 {
-    public event Action OnAllEnemiesDie;
-
     [SerializeField] private List<GameObject> _enemyPool;
     [SerializeField] private int _enemyCount;
 
     public List<EnemyBase> enemies;
+
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private int _spawnWave = 1;
     private void Awake()
     {
         for (int i = 0; i < 25; i++)
@@ -24,6 +25,11 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
         }
         _enemyCount = _enemyPool.Count;
     }
+    private void Start()
+    {
+        int enemyCount = UnityEngine.Random.Range(_spawnWave, _spawnWave + 10);
+        CallEnemies(enemyCount, _spawnPoint);
+    }
     public void CallEnemies(int count, Transform spawnPoint)
     {
         StartCoroutine(EnemyCooldown(count, spawnPoint));
@@ -32,6 +38,11 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
     {
         for (int i = 0; i < count; i++)
         {
+            if (_spawnWave > 1)
+            {
+                _enemyPool[_enemyPool.Count - 1].GetComponent<StandardEnemy>().UpgradeProperties();
+            }
+
             _enemyPool[_enemyPool.Count - 1].SetActive(true);
             _enemyPool[_enemyPool.Count - 1].transform.position = spawnPoint.position;
             _enemyPool.Remove(_enemyPool[_enemyPool.Count - 1]);
@@ -46,7 +57,9 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
 
         if (_enemyPool.Count == _enemyCount)
         {
-            OnAllEnemiesDie?.Invoke();
+            _spawnWave++;
+            int enemyCount = UnityEngine.Random.Range(_spawnWave, _spawnWave + 10);
+            CallEnemies(enemyCount, _spawnPoint);
         }
     }
 }
