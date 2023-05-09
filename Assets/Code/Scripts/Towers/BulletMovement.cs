@@ -6,12 +6,7 @@ public class BulletMovement : MonoBehaviour
     public TowerBaseMono tower;
     private Vector3 _targetPos;
     [SerializeField] private float _speed;
-    private Rigidbody2D _rb;
     Vector3 direction;
-    private void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-    }
 
     void Update()
     {

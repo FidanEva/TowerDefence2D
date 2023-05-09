@@ -52,7 +52,6 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
     private void Start()
     {
         int enemyCount = Random.Range(_spawnWave, _spawnWave + 10);
-        //Debug.Log(enemyCount);
         CallEnemies(enemyCount, _spawnPoint);
     }
     public void CallEnemies(int count, Transform spawnPoint)
@@ -77,7 +76,7 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
                 _enemyPool[_enemyPool.Count - 1].SetActive(true);
                 _enemyPool[_enemyPool.Count - 1].transform.position = spawnPoint.position;
                 _enemyPool.Remove(_enemyPool[_enemyPool.Count - 1]);
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.35f);
             }
         }
     }
@@ -91,7 +90,6 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
         {
             _spawnWave++;
             int enemyCount = Random.Range(_spawnWave, _spawnWave + 10);
-            //Debug.Log(enemyCount);
             CallEnemies(enemyCount, _spawnPoint);
         }
     }

@@ -6,7 +6,6 @@ public class StandardEnemy : EnemyBaseMono, IDestructable
     public float Gold { get { return _gold; } }
     public float Damage { get { return _damage; } }
 
-    private bool _dead = false;
     public void Initialize(float health, float damage, float gold)
     {
         _health = health;
@@ -36,7 +35,6 @@ public class StandardEnemy : EnemyBaseMono, IDestructable
     {
         if (collision.GetComponent<BulletMovement>() != null)
         {
-            //_dead = true;
             if (collision.GetComponent<BulletMovement>().tower.TryGetComponent(out BasicTower tower))
             {
                 TakeDamage(tower.Damage);

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5809889557560285206}
   - component: {fileID: 5809889557560285207}
-  - component: {fileID: 5809889557560285205}
   m_Layer: 0
   m_Name: EnemyHolder
   m_TagString: Untagged
@@ -44,23 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 861086c88ef7a71459ef2297dbe4ecb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 4320829063692924407, guid: 49d829169ad8f85478326e7bbaf8f490, type: 3}
   _enemyPool: []
   _enemyCount: 0
---- !u!114 &5809889557560285205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5809889557560285200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb98a395eee21f04e9b3aab64a3a6bd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 11400000, guid: 1de832ca7c7cc444ba4377ca24ac27f6, type: 2}
+  - {fileID: 11400000, guid: 96f44e27352787e48922a560fb948b6d, type: 2}
   _spawnPoint: {fileID: 0}
-  _nextSpawnWave: 1
-  _timeSinceLastSpawn: 0.5
-  _enemyPerSecond: 0
-  _isCoolDown: 0
+  _spawnWave: 1

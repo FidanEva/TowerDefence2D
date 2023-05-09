@@ -3,15 +3,18 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private Transform _transform;
+
     [SerializeField] private float _movementSpeed;
+    [SerializeField] private float _rotationSpeed;
+    private float _defaultMoveSpeed;
     private Transform _target;
     private int _pathIndex;
 
     void Start()
     {
-        _pathIndex = 0;
         _transform = GetComponent<Transform>();
-        _target = LevelManager.Instance._cornerPoints[_pathIndex];
+        RestartRoad();
+        _defaultMoveSpeed = _movementSpeed;
     }
 
 
@@ -34,17 +37,16 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-
-        //_transform.LookAt(_target);
-
         Vector3 direction = (_target.position - _transform.position).normalized;
         _transform.position += direction * _movementSpeed * Time.deltaTime;
-        //_transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion toRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        _transform.rotation = Quaternion.Slerp(_transform.rotation, toRotation, _rotationSpeed * Time.deltaTime);
     }
     public void RestartRoad()
     {
         _pathIndex = 0;
         _target = LevelManager.Instance._cornerPoints[_pathIndex];
     }
-
 }

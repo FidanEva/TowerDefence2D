@@ -18,5 +18,4 @@ public class GameManager : SingletoneBase<GameManager>
     {
         OnUpgradeTower?.Invoke(tower);
     }
-    
 }

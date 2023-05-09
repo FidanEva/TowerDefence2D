@@ -10,11 +10,6 @@ public class BasicTower : TowerBaseMono
 
     public TextMeshPro upgradeValueText;
 
-    private void OnEnable()
-    {
-        GameManager.Instance.OnUpgradeTower += UpgradeProperties;
-    }
-
     public void Initialize(float damage, float bulletPerSecond, float upgradeValue)
     {
         _damage = damage;
@@ -28,11 +23,6 @@ public class BasicTower : TowerBaseMono
         upgradeValueText = transform.GetChild(2).GetComponent<TextMeshPro>();
         upgradeValueText.text = Mathf.RoundToInt(_upgradeValue).ToString();
     }
-    public void UpgradeProperties(TowerBaseMono tower)
-    {
-
-    }
-
     public void Restart()
     {
         _damage = _defaultDamage;
@@ -44,11 +34,9 @@ public class BasicTower : TowerBaseMono
     }
     public void OnMouseDown()
     {
-        Debug.Log("onmousedown");
         if (CastleController.Instance.Gold >= _upgradeValue)
         {
-        GameManager.Instance.UpgradeTower(this);
-            Debug.Log("upgrade");
+            GameManager.Instance.UpgradeTower(this);
             _damage += _damage * 0.3f;
             _bulletPerSecond += _bulletPerSecond * 0.3f;
             _upgradeValue += _upgradeValue * 0.3f;

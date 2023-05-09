@@ -12,11 +12,4 @@ public class BasicTowerSO : TowerBase
         towers.Add(tower);
         return tower;
     }
-    //public override void Restart()
-    //{
-    //    foreach (GameObject tower in towers)
-    //    {
-    //        tower.GetComponent<BasicTower>().Initialize(damage, bulletPerSecond, upgradeValue);
-    //    }
-    //}
 }

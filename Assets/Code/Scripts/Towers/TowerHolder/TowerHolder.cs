@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +8,6 @@ public class TowerHolder : MonoBehaviour
     [SerializeField] private List<TowerBase> _towerBaseList;
     private void OnEnable()
     {
-        GameManager.Instance.OnLooseGame += LooseGame;
         GameManager.Instance.OnRestartGame += RestartGame;
     }
 
@@ -21,16 +19,11 @@ public class TowerHolder : MonoBehaviour
         }
     }
 
-    private void LooseGame()
-    {
-        Debug.Log("towers");
-    }
-
     private void Awake()
     {
         foreach (var tower in _towerPoints)
         {
-            int randomIndex = UnityEngine.Random.Range(0, _towerBaseList.Count);
+            int randomIndex = Random.Range(0, _towerBaseList.Count);
             GameObject go = _towerBaseList[randomIndex].Activate();
             go.transform.position = tower.transform.position;
             go.transform.parent = tower.transform;

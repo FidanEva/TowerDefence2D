@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -38,18 +37,11 @@ public class UIManager : MonoBehaviour
 
     private void HandleHealthEvent(float obj)
     {
-        //Debug.Log(obj.ToString());
         _health.text = "Health: " + Mathf.RoundToInt(obj).ToString();
     }
 
     private void HandleGoldEvent(float obj)
     {
-        //Debug.Log(obj.ToString());
         _gold.text = "Gold: " + Mathf.RoundToInt(obj).ToString();
     }
-    public void UpgradeTower()
-    {
-
-    }
-
 }
