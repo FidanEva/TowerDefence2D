@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public abstract class TowerBase : MonoBehaviour
+public abstract class TowerBase : ScriptableObject
 {
-    public GameObject enemyPrefab;
+    public GameObject towerPrefab;
 
     public float damage;
     public float bulletPerSecond;
     public float upgradeValue;
 
-    public abstract void Fire();
+    public abstract GameObject Activate();
 }

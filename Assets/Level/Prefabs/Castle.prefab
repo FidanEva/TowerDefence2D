@@ -174,8 +174,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9206137476936730244}
   - component: {fileID: 8361613890652488971}
-  - component: {fileID: -7576073419428113604}
   - component: {fileID: 7196036165485700964}
+  - component: {fileID: -7576073419428113604}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -225,20 +225,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-7576073419428113604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4015140524223209481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2372829505bedf0468d879fac5d692b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 0
-  _gold: 0
 --- !u!50 &7196036165485700964
 Rigidbody2D:
   serializedVersion: 4
@@ -260,3 +246,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7576073419428113604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015140524223209481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2372829505bedf0468d879fac5d692b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _gold: 0

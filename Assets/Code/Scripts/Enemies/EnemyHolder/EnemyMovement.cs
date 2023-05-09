@@ -23,8 +23,8 @@ public class EnemyMovement : MonoBehaviour
 
             if (_pathIndex == LevelManager.Instance._cornerPoints.Length)
             {
-                _pathIndex = 0;
-                _target = LevelManager.Instance._cornerPoints[_pathIndex];
+                RestartRoad();
+                EventHolder.Instance.InvokeOnEnemyFinish(GetComponent<EnemyBaseMono>());
                 EnemyHolder.Instance.DestroyEnemy(gameObject);
                 return;
             }
@@ -40,6 +40,11 @@ public class EnemyMovement : MonoBehaviour
         Vector3 direction = (_target.position - _transform.position).normalized;
         _transform.position += direction * _movementSpeed * Time.deltaTime;
         //_transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+    }
+    public void RestartRoad()
+    {
+        _pathIndex = 0;
+        _target = LevelManager.Instance._cornerPoints[_pathIndex];
     }
 
 }

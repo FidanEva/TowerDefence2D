@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +11,36 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
 
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private int _spawnWave = 1;
+
+    private bool _dead = false;
+    private void OnEnable()
+    {
+        GameManager.Instance.OnLooseGame += StopSpawning;
+        GameManager.Instance.OnRestartGame += StartSpawning;
+    }
+
+    private void StartSpawning()
+    {
+        _dead = false;
+        _spawnWave = 1;
+        int enemyCount = Random.Range(_spawnWave, _spawnWave + 10);
+        CallEnemies(enemyCount, _spawnPoint);
+    }
+
+    private void StopSpawning()
+    {
+        _dead = true;
+        foreach (var enemy in FindObjectsOfType<EnemyMovement>())
+        {
+            DestroyEnemy(enemy.gameObject);
+        }
+    }
+
     private void Awake()
     {
         for (int i = 0; i < 25; i++)
         {
-            int randomIndex = UnityEngine.Random.Range(0, enemies.Count);
+            int randomIndex = Random.Range(0, enemies.Count);
             GameObject go = enemies[randomIndex].Activate();
 
             _enemyPool.Add(go);
@@ -27,26 +51,34 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
     }
     private void Start()
     {
-        int enemyCount = UnityEngine.Random.Range(_spawnWave, _spawnWave + 10);
+        int enemyCount = Random.Range(_spawnWave, _spawnWave + 10);
+        Debug.Log(enemyCount);
         CallEnemies(enemyCount, _spawnPoint);
     }
     public void CallEnemies(int count, Transform spawnPoint)
     {
+        if (_dead)
+        {
+            return;
+        }
         StartCoroutine(EnemyCooldown(count, spawnPoint));
     }
     IEnumerator EnemyCooldown(int count, Transform spawnPoint)
     {
-        for (int i = 0; i < count; i++)
+        if (_enemyPool.Count > count)
         {
-            if (_spawnWave > 1)
+            for (int i = 0; i < count; i++)
             {
-                _enemyPool[_enemyPool.Count - 1].GetComponent<StandardEnemy>().UpgradeProperties();
+                if (_spawnWave > 1)
+                {
+                    _enemyPool[_enemyPool.Count - 1].GetComponent<StandardEnemy>().UpgradeProperties();
+                }
+                _enemyPool[_enemyPool.Count - 1].GetComponent<EnemyMovement>().RestartRoad();
+                _enemyPool[_enemyPool.Count - 1].SetActive(true);
+                _enemyPool[_enemyPool.Count - 1].transform.position = spawnPoint.position;
+                _enemyPool.Remove(_enemyPool[_enemyPool.Count - 1]);
+                yield return new WaitForSeconds(0.2f);
             }
-
-            _enemyPool[_enemyPool.Count - 1].SetActive(true);
-            _enemyPool[_enemyPool.Count - 1].transform.position = spawnPoint.position;
-            _enemyPool.Remove(_enemyPool[_enemyPool.Count - 1]);
-            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -58,7 +90,8 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
         if (_enemyPool.Count == _enemyCount)
         {
             _spawnWave++;
-            int enemyCount = UnityEngine.Random.Range(_spawnWave, _spawnWave + 10);
+            int enemyCount = Random.Range(_spawnWave, _spawnWave + 10);
+            Debug.Log(enemyCount);
             CallEnemies(enemyCount, _spawnPoint);
         }
     }

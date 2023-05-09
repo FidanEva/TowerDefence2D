@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4320829063692924404}
   - component: {fileID: 6923171605371982795}
   - component: {fileID: -443911338841361998}
-  m_Layer: 0
+  - component: {fileID: -4749660773540946120}
+  m_Layer: 6
   m_Name: StandardUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,4 +150,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b208bc833844849ba1a52e74a05a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 96f44e27352787e48922a560fb948b6d, type: 2}
+--- !u!50 &-4749660773540946120
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4320829063692924407}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

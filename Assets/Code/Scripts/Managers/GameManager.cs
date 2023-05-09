@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletoneBase<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public event Action OnLooseGame;
+    public event Action OnRestartGame;
+    public void LooseGame()
     {
-        
+        OnLooseGame?.Invoke();
     }
-
-    // Update is called once per frame
-    void Update()
+    public void RestartGame()
     {
-        
+        OnRestartGame?.Invoke();
     }
 }
