@@ -17,8 +17,9 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.OnRestartGame += RestartGame;
         GameManager.Instance.OnLooseGame += LooseGame;
+
         EventHolder.Instance.OnIncreaseGold += HandleGoldEvent;
-        EventHolder.Instance.OnIncreaseGold += HandleHealthEvent;
+        EventHolder.Instance.OnDecrreaseHealth += HandleHealthEvent;
     }
     public void RestartGame()
     {

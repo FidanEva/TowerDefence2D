@@ -52,7 +52,7 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
     private void Start()
     {
         int enemyCount = Random.Range(_spawnWave, _spawnWave + 10);
-        Debug.Log(enemyCount);
+        //Debug.Log(enemyCount);
         CallEnemies(enemyCount, _spawnPoint);
     }
     public void CallEnemies(int count, Transform spawnPoint)
@@ -91,7 +91,7 @@ public class EnemyHolder : SingletoneBase<EnemyHolder>
         {
             _spawnWave++;
             int enemyCount = Random.Range(_spawnWave, _spawnWave + 10);
-            Debug.Log(enemyCount);
+            //Debug.Log(enemyCount);
             CallEnemies(enemyCount, _spawnPoint);
         }
     }

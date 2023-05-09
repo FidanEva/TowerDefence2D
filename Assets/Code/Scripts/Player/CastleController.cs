@@ -5,6 +5,7 @@ public class CastleController : SingletoneBase<CastleController>
 {
     [SerializeField] private float _health;
     [SerializeField] private float _gold;
+
     [SerializeField] private float _defaultHealth;
     [SerializeField] private float _defaultGold;
 
@@ -14,8 +15,18 @@ public class CastleController : SingletoneBase<CastleController>
     private void OnEnable()
     {
         GameManager.Instance.OnRestartGame += RestartGame;
+        GameManager.Instance.OnUpgradeTower += DecreaseGold;
+
         EventHolder.Instance.OnEnemyFinish += HandleEnemyFinishEvent;
         EventHolder.Instance.OnEnemyDestroy += HandleEnemyDestroyEvent;
+    }
+
+    private void DecreaseGold(TowerBaseMono tower)
+    {
+        if (_gold >= tower.UpgradeValue)
+        {
+            _gold -= tower.UpgradeValue;
+        }
     }
 
     private void RestartGame()
@@ -29,17 +40,13 @@ public class CastleController : SingletoneBase<CastleController>
         EventHolder.Instance.InvokeDecreaseHealth(_health);
     }
 
-    private void Awake()
-    {
-        //Debug.Log(_gold);
-        //Debug.Log(_health);
-        EventHolder.Instance.InvokeIncreaseGold(_gold);
-        EventHolder.Instance.InvokeDecreaseHealth(_health);
-    }
     private void Start()
     {
         _defaultHealth = _health;
         _defaultGold = _gold;
+
+        EventHolder.Instance.InvokeIncreaseGold(_defaultGold);
+        EventHolder.Instance.InvokeDecreaseHealth(_defaultHealth);
     }
     private void HandleEnemyDestroyEvent(EnemyBaseMono obj)
     {

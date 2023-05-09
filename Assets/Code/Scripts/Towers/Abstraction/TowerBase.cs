@@ -9,4 +9,6 @@ public abstract class TowerBase : ScriptableObject
     public float upgradeValue;
 
     public abstract GameObject Activate();
+
+    //public abstract void Restart();
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class TowerHolder : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _towerList;
+    [SerializeField] private List<Transform> _towerPoints;
+    [SerializeField] private List<TowerBase> _towerBaseList;
     private void OnEnable()
     {
         GameManager.Instance.OnLooseGame += LooseGame;
@@ -13,11 +15,9 @@ public class TowerHolder : MonoBehaviour
 
     private void RestartGame()
     {
-        foreach (var tower in FindObjectsOfType<TowerBaseMono>())
+        foreach (var tower in _towerList)
         {
-            tower.GetComponent<BasicTower>().Initialize(tower.GetComponent<TowerBaseMono>().towerData.damage, tower.GetComponent<TowerBaseMono>().towerData.bulletPerSecond, tower.GetComponent<TowerBaseMono>().towerData.upgradeValue);
-
-            _towerList.Add(tower.gameObject);
+            tower.GetComponent<BasicTower>().Restart();
         }
     }
 
@@ -28,14 +28,13 @@ public class TowerHolder : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var tower in FindObjectsOfType<TowerBaseMono>())
+        foreach (var tower in _towerPoints)
         {
-            //tower.GetComponent<TowerBaseMono>().towerData.Activate();
-            tower.GetComponent<BasicTower>().Initialize(tower.GetComponent<TowerBaseMono>().towerData.damage, tower.GetComponent<TowerBaseMono>().towerData.bulletPerSecond, tower.GetComponent<TowerBaseMono>().towerData.upgradeValue);
-
-            _towerList.Add(tower.gameObject);  
-            //Debug.Log("tower" + tower.GetComponent<TowerBaseMono>().towerData.damage);
-            //Debug.Log("basic" + tower.GetComponent<BasicTower>().Damage);
+            int randomIndex = UnityEngine.Random.Range(0, _towerBaseList.Count);
+            GameObject go = _towerBaseList[randomIndex].Activate();
+            go.transform.position = tower.transform.position;
+            go.transform.parent = tower.transform;
+            _towerList.Add(go);  
         }
     }
 }

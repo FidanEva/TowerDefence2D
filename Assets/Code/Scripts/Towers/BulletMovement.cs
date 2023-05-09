@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class BulletMovement : MonoBehaviour
 {
@@ -20,11 +21,7 @@ public class BulletMovement : MonoBehaviour
             return;
         }
 
-        //_rb.velocity = direction * _speed * Time.deltaTime;
-        //transform.Translate(direction * _speed * Time.deltaTime, Space.World);
-        transform.position = Vector3.MoveTowards(transform.position, _targetPos, _speed * Time.deltaTime);
-
-        //transform.position += direction * _speed * Time.deltaTime;
+        transform.position += direction.normalized * (_speed * Time.deltaTime);
 
     }
     public void SetTarget(Transform newTarget)
@@ -32,19 +29,4 @@ public class BulletMovement : MonoBehaviour
         _targetPos = newTarget.position;
         direction = (_targetPos - transform.position).normalized;
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.TryGetComponent(out EnemyBaseMono enemy))
-    //    {
-    //        switch (enemy, tower)
-    //        {
-    //            case (StandardEnemy standard, BasicTower tower):
-    //                Debug.Log("tower damage: " + tower.Damage);
-    //                standard.TakeDamage(tower.Damage);
-    //                break;
-    //        }            
-    //                BulletHolder.Instance.DestroyBullet(collision.gameObject);
-    //    }
-    //}
 }
