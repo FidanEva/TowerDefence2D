@@ -56,5 +56,6 @@ public class BasicTower : TowerBaseMono
             upgradeValueText = transform.GetChild(2).GetComponent<TextMeshPro>();
             upgradeValueText.text = Mathf.RoundToInt(_upgradeValue).ToString();
         }
+        
     }
 }
