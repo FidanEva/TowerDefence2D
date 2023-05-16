@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPool: []
-  _enemyCount: 0
+  _enemyCount: 150
   enemies:
   - {fileID: 11400000, guid: 1de832ca7c7cc444ba4377ca24ac27f6, type: 2}
   - {fileID: 11400000, guid: 96f44e27352787e48922a560fb948b6d, type: 2}

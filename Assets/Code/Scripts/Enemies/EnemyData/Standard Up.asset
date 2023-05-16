@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4320829063692924407, guid: c6a1a335d16f0bd4c827bf028ae9e82b, type: 3}
   health: 30
-  damage: 15
-  gold: 30
+  damage: 10
+  gold: 20
